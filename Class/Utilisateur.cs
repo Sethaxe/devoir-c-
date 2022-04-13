@@ -1,31 +1,32 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
-public class Utilisateur {
-  private string nom { get; set; }
-  private string prenom { get; set; }
-  private int solde { get; set; }
-  private List<Operation_bancaire> desOperations = new List<Operation_bancaire>();
+class Utilisateur{
 
-  public Utilisateur(string n, string p, int s){
-    nom = n;
-    prenom = p;
-    solde = s;
+  public List<Operation_bancaire> operations = new List<Operation_bancaire>(); 
+
+  private string first;
+  private string last;
+  private int solde;
+
+  public Utilisateur(){
+    solde = 0;
   }
   
-  public Utilisateur(string n, string p, int s, ArrayList desOp){
-    nom = n; { get; set; }
-    prenom = p; { get; set; }
-    solde = s; { get; set; }
-    desOperations = desOp;
+  public string FirstName{
+    get => first;
+    set => first = value;
   }
-
+  public string LastName{
+    get => last;
+    set => last = value; 
+  }
+  public int Solde{
+    get => solde;
+    set => solde = value;
+  }
+  
   public override string ToString(){
-    var chaine = "Utilisateur /n";
-      chaine += "nom : " + nom + " /n";
-      chaine += "prenom : " + prenom + " /n";
-      chaine += "solde : " + solde + " /n";
-
-    return chaine;
+    return $"utilisateur : {FirstName} {LastName}, solde : {Solde}";
   }
 }

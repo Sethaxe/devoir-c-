@@ -1,40 +1,41 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
-public class Operation_bancaire {
-  private string type_operation { get; set; }
-  private string date_operation { get; set; }
+class Operation_bancaire{
 
-  public Operation_bancaire(string t_o, string d_o){
-    type_opration = t_o ;
-    date_operation = d_o;
-
-  }
-
-  public string Type_operation
-  {
-      get { return type_operation; }
-      set { type_operation = value; }
+  private string typeOperation;
+  private string dateOperation;
+  
+  public string TypeOperation{
+    get => typeOperation;
+    set => typeOperation = value;
   }
   
-   public void Crediter()
-  {  
-    //test
+  public string DateOperation{
+    get => dateOperation;
+    set => dateOperation = value;
   }
-  public void Retrait()
-  { 
-      
-  }
-  //public Afficher(){}
 
-  //public HistoriqueOpe(){}
+  public void Retrait(Utilisateur utilisateur, int montant){  
+    if(utilisateur.Solde <= 0){
+      throw new SoldeIsNegativeOrNullException("Vous ne pouvez pas faire de retrait car votre solde est negatif");
+    }else{
+      utilisateur.Solde -= montant;
+    }
+  
+  }
+  public void Crediter(Utilisateur utilisateur, int montant){
+    utilisateur.Solde += montant;
+  }
 
   public override string ToString(){
-    var chaine = "Operation Bancaire /n";
-      chaine += "Type : " + type_operation + " /n";
-      chaine += "Date : " + date_operation + " /n";
-
-    return chaine;
+    return $"operation : {TypeOperation}, fait le {DateOperation}";
   }
+}
+
+
+public class SoldeIsNegativeOrNullException : Exception{
+  public SoldeIsNegativeOrNullException(string message): base(message){
     
+  }
 }

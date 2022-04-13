@@ -1,29 +1,34 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
-public class BanquePhysique
-{
-  private string nom_banque { get; set; }
-  private string adresse { get; set; }
-  private List<Utilisateur> listeUtilisateur = new List<Utilisateur>();
+class BanquePhysique{
 
-  public Banque(string n_b, string ad){
-    nom_banque = n_b;
-    adresse = ad;
+  public List<Utilisateur> listeUtilisateurs = new List<Utilisateur>(); 
+
+  private string nom_banque;
+  private string adresse;
+
+    public string Nom_banque{
+    get => nom_banque;
+    set => nom_banque = value;
   }
-  
-  public Banque(string n_b, string ad, ArrayList liste){
-    nom_banque = n_b;
-    adresse = ad;
-    liste = listeUtilisateur;
+  public string Adresse{
+    get => adresse; 
+    set => adresse = value;
   }
+
+  public BanquePhysique(String name, string adresse){
+    this.nom_banque = name;
+    this.adresse = adresse;
+  }
+
+
   
   public override string ToString(){
-    var chaine = "Banque en Ligne : /n";
+    var chaine = "Banque Physique : /n";
       chaine += "nom : " + nom_banque + " /n";
       chaine += "adresse : " + adresse + " /n";
 
     return chaine;
   }
-    
 }
